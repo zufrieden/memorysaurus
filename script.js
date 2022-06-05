@@ -33,17 +33,18 @@ function createBoard() {
   const tiles = shuffleArray([...tileOptions, ...tileOptions]);
   const length = tiles.length;
 
+
   for (let i = 0; i < length; i++) {
     window.setTimeout(() => {
       board.appendChild(buildTile(tiles.pop(), i));
     }, i * 100);
   }
+  document.querySelector('.audio-intro').play();
 
   window.setTimeout(() => {
     document.querySelectorAll('.cube').forEach(tile => {
       tile.addEventListener('click', () => selectTile(tile));
     });
-
     state.boardLocked = false;
   }, tiles.length * 100);
 }
